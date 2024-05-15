@@ -13,6 +13,18 @@ function save_custom_data_to_order()
 			$Bank_Reference_Description = isset($_POST['Bank_Reference_Description']) ? sanitize_text_field($_POST['Bank_Reference_Description']) : '';
 			$order_id = isset($_POST['order_id']) ? intval(sanitize_text_field($_POST['order_id'])) : '';
 
+			if (strlen($Bank_Reference_Number) > 100) {
+				// Data is too long, handle the error (e.g., display an error message)
+				echo __('Custom data is too long. Please enter no more than 100 characters.',"mj_gomegamega_plugin");
+				// You may also redirect the user back to the form or perform other actions
+			}
+
+			if (strlen($Bank_Reference_Description) > 500) {
+				// Data is too long, handle the error (e.g., display an error message)
+				echo __('Custom data is too long. Please enter no more than 100 characters.',"mj_gomegamega_plugin");
+				// You may also redirect the user back to the form or perform other actions
+			}
+
 
 			/*----------------VALIDATION----------------*/
 			$order = wc_get_order($order_id);
